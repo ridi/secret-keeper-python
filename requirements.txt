@@ -1,1 +1,4 @@
 boto3==1.9.16
+pytest
+pytest-cov
+coveralls
