@@ -57,6 +57,7 @@ With secret-keeper, you can:
     - KMS key source: My current account
     - KMS Key ID: Alias of the dedicated encryption key you created above, like `alias/ssm/secrets`. Or the key ID, like `11223344-5566-7788-9900-aabbccddeeff`.
     - Value: `pa$$w@rd!`
+  ![Parameter Details](images/CreateParam-01-parameter-details.png)
 - Write sample application.
 ```Python
 # sample.py
