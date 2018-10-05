@@ -1,16 +1,20 @@
 language: python
 python:
-- '2.7'
-- '3.3'
-- '3.4'
-- '3.5'
-- '3.6'
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
 install:
-- pip install -r requirements.txt
+  - pip install -r requirements.txt
 script:
-- python -m unittest discover
+  - python -m unittest discover
 deploy:
   provider: pypi
-  user: ridi-data
+  user: "ridi-data"
   password:
-    secure: H5Yrnd8bQaXF46lf6iQd23SBBuqX+/v7ViWmqgUzvefva8nasI691eiD+BDDoG6XnAAPK0nMH0qjbhSl3HUc78blWQqR5E5L20nz2318cPOKdQZIGRSkFAVNBQHwESrWgR58vIZn3afKx7PCNNIwflHoijG/eAk1rxNsPN8xCsZcwDZlrixT/05x4jE4L7T3KKWa6q8BNIOGTLzJQ7F8+5y3QHaDB0pgDSLsZidILuSpA7YiIt/a6l48b5ZEVpJVpQHTM2BkBELnDwg8vLqjuqtzDuwuKZCGRoy6o1uCRgfh6OjJsSXDYlrji8oJLsYSKC2QgWouNsQ9s9RYEKy8mWfqGgTp7/I5LSL5Bo89A62xMdE5GVrbTytPoHkyxiVFS0geEbuOs9r3LpuOIyIQhZssmLbFtZ+Wqs/xM8Fbg2AHs95CRX/nYABZILV096AIt9qwIrvPCPfyglLbMz4ZTaBv4tTVWbRCDEdsmpD/p3ROk0sc4uY6RTAAfMlVT+WHv9MTV3Z9MQHUPrV1vMQ2C4VS9H1IOxfd7/S6095ANQUF5pgNuzW/XQIJitwE9PLqpiht7I4d1t3n23F7E5di/zP7UglJfzMMqCosZsZFbRYqJBPGmzIxQxiusnS++VTVsZrJnZmUp3gVeOrtKTXf9rZDaQNkVlEHvaulBcdZ4G8=
+    secure: "H5Yrnd8bQaXF46lf6iQd23SBBuqX+/v7ViWmqgUzvefva8nasI691eiD+BDDoG6XnAAPK0nMH0qjbhSl3HUc78blWQqR5E5L20nz2318cPOKdQZIGRSkFAVNBQHwESrWgR58vIZn3afKx7PCNNIwflHoijG/eAk1rxNsPN8xCsZcwDZlrixT/05x4jE4L7T3KKWa6q8BNIOGTLzJQ7F8+5y3QHaDB0pgDSLsZidILuSpA7YiIt/a6l48b5ZEVpJVpQHTM2BkBELnDwg8vLqjuqtzDuwuKZCGRoy6o1uCRgfh6OjJsSXDYlrji8oJLsYSKC2QgWouNsQ9s9RYEKy8mWfqGgTp7/I5LSL5Bo89A62xMdE5GVrbTytPoHkyxiVFS0geEbuOs9r3LpuOIyIQhZssmLbFtZ+Wqs/xM8Fbg2AHs95CRX/nYABZILV096AIt9qwIrvPCPfyglLbMz4ZTaBv4tTVWbRCDEdsmpD/p3ROk0sc4uY6RTAAfMlVT+WHv9MTV3Z9MQHUPrV1vMQ2C4VS9H1IOxfd7/S6095ANQUF5pgNuzW/XQIJitwE9PLqpiht7I4d1t3n23F7E5di/zP7UglJfzMMqCosZsZFbRYqJBPGmzIxQxiusnS++VTVsZrJnZmUp3gVeOrtKTXf9rZDaQNkVlEHvaulBcdZ4G8="
+  on:
+    branch: master
+    python: "3.6"
+
