@@ -14,7 +14,7 @@ With secret-keeper, you can:
 
 
 ## Preparation
-1. Create a dedicated AWS IAM user.
+- Create a dedicated AWS IAM user.
   - From AWS console, go to IAM > Users.
   - Click 'Add User'.
   - Enter your yourname (`seecret-keeper-user` in this example). From access type, check only on "Programmatic access". Click "Next: Permissions".
@@ -33,7 +33,7 @@ With secret-keeper, you can:
   - Review your choices and click "Create user".
   - You will be shown the new user's access key ID and secret access key. **Don't forget to write down the secret key. You will never see it again.**
   ![Success](images/AddUser-06-success.png)
-1. Create a dedicated encryption key in AWS KMS.
+- Create a dedicated encryption key in AWS KMS.
   - From AWS console, go to IAM > Encryption Keys.
   - Select your region and click "Create key".
   - From "Step 1", enter alias for your encryption key (`ssm/secrets` in this example) and click "Next step".
@@ -46,7 +46,7 @@ With secret-keeper, you can:
   ![Success](images/CreateKey-03-success.png)
 
 ## Usage
-1. Create a sample secret with AWS SSM Parameter Store.
+- Create a sample secret with AWS SSM Parameter Store.
   - From AWS console, go to Systems Manager > Parameter Store. Make sure you have selected the right region in which you created the encryption key.
   - Click "Create Parameter".
   - Enter Parameter details:
@@ -55,7 +55,7 @@ With secret-keeper, you can:
     - KMS key source: My current account
     - KMS Key ID: Alias of the dedicated encryption key you created above, like `alias/ssm/secrets`. Or the key ID, like `11223344-5566-7788-9900-aabbccddeeff`.
     - Value: `pa$$w@rd!`
-1. Write sample application.
+- Write sample application.
 ```Python
 # sample.py
 if __name__ == "__main__":
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     print("Secret: %s" % secret)
 ```
 
-1. Run the sample application. You must provide the dedicated user's access key and secret key, and the region as environment variables.
+- Run the sample application. You must provide the dedicated user's access key and secret key, and the region as environment variables.
 ```bash
 $ export SECRETKEEPER_AWS_ACCESS_KEY="YOUR_ACCESS_KEY_ID"
 $ export SECRETKEEPER_AWS_SECRET_KEY="YOUR_SECRET_ACCESS_KEY"
