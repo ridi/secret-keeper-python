@@ -1,5 +1,7 @@
 # Secret Keeper - Python
 
+[![Build Status](https://travis-ci.com/ridi/secret-keeper-python.svg?branch=master)](https://travis-ci.com/ridi/secret-keeper-python)
+
 ## Introduction
 Without secret-keeper, you would have:
 - hard-coded your secrets in your version-controlled source code (Worst!), or
