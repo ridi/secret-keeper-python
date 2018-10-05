@@ -9,7 +9,7 @@ setup(
     packages=[
         'ridi.secret_keeper',
     ],
-    version='0.1.1',
+    version='0.1.2',
     description='Secret Keeper',
     url='https://github.com/ridi/secret-keeper-python',
     keywords=['secret', 'secret-keeper', 'ridi', 'ridibooks'],
