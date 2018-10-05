@@ -6,7 +6,7 @@ build:
 	pip install -r requirements.txt
 
 test:
-	python -m unittest discover
+	pip install pytest pytest-cov coveralls && python -m pytest test --cov=ridi
 
 lint:
 	pylint ridi
