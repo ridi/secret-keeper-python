@@ -5,13 +5,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='ridi-secret-keeper',
+    name='secret-keeper',
     packages=[
         'ridi.secret_keeper',
     ],
-    version='0.2.0',
-    description='Ridi Secret Keeper',
-    url='https://github.com/ridi/secret-keeper',
+    version='0.1.0',
+    description='Secret Keeper',
+    url='https://github.com/ridi/secret-keeper-python',
     keywords=['secret', 'secret-keeper', 'ridi', 'ridibooks'],
     classifiers=[
         'License :: OSI Approved :: MIT License',
