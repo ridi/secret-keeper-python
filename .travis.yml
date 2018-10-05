@@ -1,16 +1,16 @@
 language: python
 python:
-  - "2.7"
-  - "3.3"
-  - "3.4"
-  - "3.5"
-  - "3.6"
+- '2.7'
+- '3.3'
+- '3.4'
+- '3.5'
+- '3.6'
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 script:
-  - python -m unittest discover
+- python -m unittest discover
 deploy:
   provider: pypi
-  user: "ridi-data"
+  user: ridi-data
   password:
-    secure: "N/9EpJG3DU99rTkxHo2mmFUUX+Ganm/ccoDIcES0l5f/ZNSVJAtHOYdg3ORQNthOp20eSZQrY5NDSqm9yMCJ0qvPJG0u/5ru13xcKbNqBUEftDpVo3NCSZnRJalPCgmTX9o8gAKKIzRnJK2h8k68N9D4rrAPv7u1w59neF7byA1fyfpYXCqaPakL6jKGS9eMJ/hjYltniembWMzkOI7gbWx41SZKynPt3fmapMP91X7Jx+RWUkeXoDXfCulXLR6cq0TiByEXN6mtw6bP0rqVci8SUUkV/B0blFdi3lB9Ab9g42RromyXxX6iD+9nBx+WXiwxV+IJCcOARLHxAXOGHBkn1Jf9j042NTEm3tj7eSR388wkXopr603LJhrQnfgUmhVHlO1BnP1o8KeL+JZo3nWDaUj7eomdJBXnsdjy6l9VlVD/BDMVBWVyc+x8ceN8/vAux2D4krf0FvAK7iv3d8z+PBNLWWZvBKlV4s2rze7wbc3oDsCgQPvruHBytgmeCHTIdex2qyGgRPiWn/01uOAD6saVoOAxjyzm9Jpok4YYLDfVGfaa/dWw74+Pu3XzifPkpadFmDfGspRllLJa7TLGiIivdT4NNDNYtvsdqMx56RYrpPgx9aEI6Mn5TAWpWjNOh/Yl7Nc2TmkZERnXAHXMmdRxB6FBNak4o/n+8Vs="
+    secure: xDEOrt4IFKQJxknutuNsW2xptPbIzauHDbaQ+yvRGaC2TYdkHclyjsMBekBSPEY3jhfY9wjktBqQYXYA1R4EYN6Tj+9Nx99ZX5v1cEb0cASXOQPfNCAwkiuh4uLHr/SoSo2F5uXOF1Dnm3cQwCirh+ky8T258mM4VjEH54Lk24pYLSxydV41XWpMX3lKClNloXiiIe2zHxQXMBOXHZbV0O4A8gcrSYlr6cXHLBRmfQ8y23HYz1gZF+LsQwX49ZC+Wp+CxF0u7+0nqfH4yhVk/QJrBBiaBFwySQ16FFGIslF42DB3vqOruSVuI+tfCrr/7PFChRtwPfV+P1qkLYIb8Fu//bCJtHRxLRTprxSQpNNjqKugI8d/ylJJkupWVhNulQlgV7bVFg7qSnNzMI6310cZQdUkdua8id6DhdcJk10TJHmEtChhzN1B6o0xi/AUvACmD/5bbsaj8MbuqnyWkmg52rgxW1ZLXpPxNITdtRZedxzCWx/xCTCtJ2KwskBGyJmnPp5QS81DGLh6WIbwS4v07RK7luTToxQMNDaHBlex+oCbGkSZXtLJEMTlLf3sxToVaO4hDt99Jpu2fEd6aYBZ4fzbGJel2f8i1mjkWpONPCzZ/gI4/PGSsQk/0UglfAERuRMtiJVxJ+2sG0qtn+lOVNj1yp57Vt9dxKzwj58=
