@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.com/ridi/secret-keeper-python.svg?branch=master)](https://travis-ci.com/ridi/secret-keeper-python)
 [![PyPI version](https://badge.fury.io/py/secret-keeper.svg)](https://badge.fury.io/py/secret-keeper)
+[![Coverage Status](https://coveralls.io/repos/github/ridi/secret-keeper-python/badge.svg?branch=master)](https://coveralls.io/github/ridi/secret-keeper-python?branch=master)
 
 ## Introduction
 Without secret-keeper, you would have:
