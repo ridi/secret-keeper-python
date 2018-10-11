@@ -25,7 +25,7 @@ pip install secret-keeper
 ## Preparation
 - [Create a dedicated AWS IAM user](https://github.com/ridi/secret-keeper-python/wiki/Create-a-dedicated-AWS-IAM-user)
 - [Create a dedicated encryption key in AWS KMS](https://github.com/ridi/secret-keeper-python/wiki/Create-a-dedicated-encryption-key-in-AWS-KMS)
-- [Create a sample secret with AWS SSM Parameter Store](Create a sample secret in AWS SSM Parameter Store)
+- [Create a sample secret with AWS SSM Parameter Store](https://github.com/ridi/secret-keeper-python/wiki/Create-a-sample-secret-in-AWS-SSM-Parameter-Store)
 
 ## Usage
 - Write a sample application.
