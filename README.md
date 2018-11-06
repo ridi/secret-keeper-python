@@ -38,11 +38,24 @@ if __name__ == "__main__":
     print("Secret: %s" % secret)
 ```
 
-- Run the sample application. You must provide the dedicated user's access key and secret key, and the region as environment variables.
+- Run the sample application. You must either provide the dedicated user's access key, secret key and the region as environment variables, or pass them to `configure` function.
+
+### Provide as environment variables
 ```bash
 $ export SECRETKEEPER_AWS_ACCESS_KEY="YOUR_ACCESS_KEY_ID"
 $ export SECRETKEEPER_AWS_SECRET_KEY="YOUR_SECRET_ACCESS_KEY"
 $ export SECRETKEEPER_AWS_REGION="us-east-1"
 $ python sample.py
 Secret: pa$$w@rd!
+```
+
+### Pass to `configure` function
+```python
+from ridi import secret_keeper
+
+secret_keeper.configure(
+    aws_access_key="YOUR_ACCESS_KEY_ID",
+    aws_secret_key="YOUR_SECRET_ACCESS_KEY",
+    aws_region="us-east-1",
+)
 ```
