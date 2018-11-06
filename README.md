@@ -38,7 +38,7 @@ if __name__ == "__main__":
     print("Secret: %s" % secret)
 ```
 
-- Run the sample application. You must either provide the dedicated user's access key, secret key and the region as environment variables, or pass them to configure function.
+- Run the sample application. You must either provide the dedicated user's access key, secret key and the region as environment variables, or pass them to `configure` function.
 
 ### Provide as environment variables
 ```bash
