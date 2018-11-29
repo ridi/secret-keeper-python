@@ -1,7 +1,12 @@
+import contextlib
 import os
+import random
+import string
 import unittest
+from io import StringIO
 
-from ridi.secret_keeper import tell, tell_safe, ENVNAME_AWS_ACCESS_KEY, ENVNAME_AWS_SECRET_KEY, ENVNAME_AWS_REGION
+from ridi.secret_keeper import tell, tell_safe
+from ridi.secret_keeper.cmdline import main
 
 try:
     from unittest import mock
@@ -36,10 +41,6 @@ class FakeClient(object):
 
 class TestSecretKeeperBase(unittest.TestCase):
     def setUp(self):
-        os.environ[ENVNAME_AWS_ACCESS_KEY] = "access_key"
-        os.environ[ENVNAME_AWS_SECRET_KEY] = "secret_key"
-        os.environ[ENVNAME_AWS_REGION] = "us-east-1"
-
         _client = FakeClient({
             "ones": "11111",
         })
@@ -50,7 +51,7 @@ class TestSecretKeeperBase(unittest.TestCase):
         self._patcher.stop()
 
 
-class TestSecretKeeperGet(TestSecretKeeperBase):
+class TestSecretKeeperTell(TestSecretKeeperBase):
     def test_existing_keys(self):
         self.assertEqual(tell("ones"), "11111")
 
@@ -59,9 +60,44 @@ class TestSecretKeeperGet(TestSecretKeeperBase):
             tell("twos")
 
 
-class TestSecretKeeperGetSafe(TestSecretKeeperBase):
+class TestSecretKeeperTellSafe(TestSecretKeeperBase):
     def test_existing_keys(self):
         self.assertEqual(tell_safe("ones"), "11111")
 
     def test_non_existing_keys(self):
         self.assertEqual(tell_safe("twos"), None)
+
+
+class TestSecretkeeperCLI(TestSecretKeeperBase):
+    def test_success_stdout(self):
+        tmp_stdout = StringIO()
+        with contextlib.redirect_stdout(tmp_stdout):
+            retval = main(["ones"])
+        output = tmp_stdout.getvalue().strip()
+        self.assertEqual(output, "11111")
+        self.assertEqual(retval, 0)
+
+    def test_success_file(self):
+        outfile = "tmp." + "".join(random.choice(string.ascii_letters) for _ in range(10))
+        if os.path.exists(outfile):
+            os.remove(outfile)
+
+        retval = main(["ones", "--outfile", outfile])
+
+        with open(outfile, "r") as f:
+            content = f.read().strip()
+
+        if os.path.exists(outfile):
+            os.remove(outfile)
+
+        self.assertEqual(content, "11111")
+        self.assertEqual(retval, 0)
+
+    def test_fail_stderr(self):
+        tmp_stderr = StringIO()
+        with contextlib.redirect_stderr(tmp_stderr):
+            retval = main(["twos"])
+        output = tmp_stderr.getvalue().strip()
+        print(output)
+        self.assertIn("Secret of alias 'twos' is not found.", output)
+        self.assertEqual(retval, 1)
