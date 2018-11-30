@@ -1,12 +1,11 @@
-import contextlib
 import os
 import random
 import string
 import unittest
 try:
-    from io import StringIO
-except ImportError:
     from StringIO import StringIO   # for Python2 support
+except ImportError:
+    from io import StringIO
 
 from ridi.secret_keeper import tell, tell_safe
 from ridi.secret_keeper.cmdline import run
