@@ -3,7 +3,10 @@ import os
 import random
 import string
 import unittest
-from io import StringIO
+try:
+    from io import StringIO
+except ImportError:
+    from StringIO import StringIO   # for Python2 support
 
 from ridi.secret_keeper import tell, tell_safe
 from ridi.secret_keeper.cmdline import run
@@ -70,12 +73,11 @@ class TestSecretKeeperTellSafe(TestSecretKeeperBase):
 
 class TestSecretkeeperCLI(TestSecretKeeperBase):
     def test_success_stdout(self):
-        tmp_stdout = StringIO()
-        with contextlib.redirect_stdout(tmp_stdout):
+        with mock.patch('sys.stdout', new=StringIO()) as fake_stdout:
             retval = run(["ones"])
-        output = tmp_stdout.getvalue().strip()
-        self.assertEqual(output, "11111")
-        self.assertEqual(retval, 0)
+            output = fake_stdout.getvalue().strip()
+            self.assertEqual(output, "11111")
+            self.assertEqual(retval, 0)
 
     def test_success_file(self):
         outfile = "tmp." + "".join(random.choice(string.ascii_letters) for _ in range(10))
@@ -94,10 +96,8 @@ class TestSecretkeeperCLI(TestSecretKeeperBase):
         self.assertEqual(retval, 0)
 
     def test_fail_stderr(self):
-        tmp_stderr = StringIO()
-        with contextlib.redirect_stderr(tmp_stderr):
+        with mock.patch('sys.stderr', new=StringIO()) as fake_stderr:
             retval = run(["twos"])
-        output = tmp_stderr.getvalue().strip()
-        print(output)
-        self.assertIn("Secret of alias 'twos' is not found.", output)
-        self.assertEqual(retval, 1)
+            output = fake_stderr.getvalue().strip()
+            self.assertIn("Secret of alias 'twos' is not found.", output)
+            self.assertEqual(retval, 1)
