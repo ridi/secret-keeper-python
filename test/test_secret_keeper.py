@@ -6,7 +6,7 @@ import unittest
 from io import StringIO
 
 from ridi.secret_keeper import tell, tell_safe
-from ridi.secret_keeper.cmdline import main
+from ridi.secret_keeper.cmdline import run
 
 try:
     from unittest import mock
@@ -72,7 +72,7 @@ class TestSecretkeeperCLI(TestSecretKeeperBase):
     def test_success_stdout(self):
         tmp_stdout = StringIO()
         with contextlib.redirect_stdout(tmp_stdout):
-            retval = main(["ones"])
+            retval = run(["ones"])
         output = tmp_stdout.getvalue().strip()
         self.assertEqual(output, "11111")
         self.assertEqual(retval, 0)
@@ -82,7 +82,7 @@ class TestSecretkeeperCLI(TestSecretKeeperBase):
         if os.path.exists(outfile):
             os.remove(outfile)
 
-        retval = main(["ones", "--outfile", outfile])
+        retval = run(["ones", "--outfile", outfile])
 
         with open(outfile, "r") as f:
             content = f.read().strip()
@@ -96,7 +96,7 @@ class TestSecretkeeperCLI(TestSecretKeeperBase):
     def test_fail_stderr(self):
         tmp_stderr = StringIO()
         with contextlib.redirect_stderr(tmp_stderr):
-            retval = main(["twos"])
+            retval = run(["twos"])
         output = tmp_stderr.getvalue().strip()
         print(output)
         self.assertIn("Secret of alias 'twos' is not found.", output)

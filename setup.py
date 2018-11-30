@@ -9,7 +9,7 @@ setup(
     packages=[
         'ridi.secret_keeper',
     ],
-    version='0.2.0',
+    version='0.3.0-test01',
     description='Secret Keeper',
     url='https://github.com/ridi/secret-keeper-python',
     keywords=['secret', 'secret-keeper', 'ridi', 'ridibooks'],
@@ -20,4 +20,9 @@ setup(
     install_requires=[
         'boto3>=1.9.16',
     ],
+    entry_points={
+        'console_scripts': [
+            'secret-keeper = ridi.secret_keeper.cmdline:main'
+        ]
+    },
 )

@@ -7,7 +7,7 @@ from botocore.exceptions import ClientError
 from ridi.secret_keeper.connect import tell
 
 
-def main(arguments):
+def run(arguments):
     description = """
     Retrieve and print secrets from `secret-keeper`.
     You need to configure AWS credentials by environment variables or files.
@@ -38,7 +38,11 @@ def main(arguments):
             print("Secret of alias '%s' is not found." % alias, file=sys.stderr)
         return 1
 
-if __name__ == "__main__":
-    retval = main(sys.argv[1:])
+
+def main():
+    retval = run(sys.argv[1:])
     sys.exit(retval)
 
+
+if __name__ == "__main__":
+    main()
