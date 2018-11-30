@@ -14,7 +14,7 @@ With secret-keeper, you can:
 - store your secrets in AWS and let your applications use it safely and conveniently.
 - let AWS manage contents of your secrets, keeping them encoded and safe.
 - version-control usage of secrets inside your applications, since secrets are referred only with their aliases.
-- simply provide access key and secret key of your dedicated IAM user to your deployment system. You don't have to manage per-project config files.
+- let your deployment systems use secrets, simply by adding an IAM policy to the IAM user or role that you use in deployment.  You don't have to manage per-project config files.
 
 
 ## Install
