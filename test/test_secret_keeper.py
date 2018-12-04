@@ -70,7 +70,7 @@ class TestSecretKeeperTellSafe(TestSecretKeeperBase):
         self.assertEqual(tell_safe("twos"), None)
 
 
-class TestSecretkeeperCLI(TestSecretKeeperBase):
+class TestSecretKeeperCLI(TestSecretKeeperBase):
     def test_success_stdout(self):
         with mock.patch('sys.stdout', new=StringIO()) as fake_stdout:
             retval = run(["ones"])
