@@ -95,7 +95,7 @@ $ python sample.py
 pa$$w@rd!
 ```
 
-- Rather than using `boto3`'s credentials cheme, you can pass your credentials and region to `configure` function. (as of `0.2.0`)
+- Rather than using `boto3`'s credentials scheme, you can pass your credentials and region to `configure` function. (as of `0.2.0`)
 
 ```python
 # sample2.py
