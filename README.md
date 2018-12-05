@@ -1,7 +1,8 @@
 # Secret Keeper - Python
 
 [![Build Status](https://travis-ci.com/ridi/secret-keeper-python.svg?branch=master)](https://travis-ci.com/ridi/secret-keeper-python)
-[![PyPI version](https://badge.fury.io/py/secret-keeper.svg)](https://badge.fury.io/py/secret-keeper)
+[![PyPI](https://img.shields.io/pypi/v/secret-keeper.svg)](https://pypi.org/project/secret-keeper/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/secret-keeper.svg)](https://pypi.org/project/secret-keeper/)
 [![Coverage Status](https://coveralls.io/repos/github/ridi/secret-keeper-python/badge.svg?branch=master)](https://coveralls.io/github/ridi/secret-keeper-python?branch=master)
 
 ## Introduction
@@ -14,7 +15,7 @@ With secret-keeper, you can:
 - store your secrets in AWS and let your applications use it safely and conveniently.
 - let AWS manage contents of your secrets, keeping them encoded and safe.
 - version-control usage of secrets inside your applications, since secrets are referred only with their aliases.
-- simply provide access key and secret key of your dedicated IAM user to your deployment system. You don't have to manage per-project config files.
+- let your deployment systems use secrets, simply by adding an IAM policy to the IAM user or role that you use in deployment.  You don't have to manage per-project config files.
 
 
 ## Install
@@ -23,11 +24,61 @@ pip install secret-keeper
 ```
 
 ## Preparation
-- [Create a dedicated AWS IAM user](https://github.com/ridi/secret-keeper-python/wiki/Create-a-dedicated-AWS-IAM-user)
 - [Create a dedicated encryption key in AWS KMS](https://github.com/ridi/secret-keeper-python/wiki/Create-a-dedicated-encryption-key-in-AWS-KMS)
+- [Create a dedicated IAM Policy for accessing secrets](https://github.com/ridi/secret-keeper-python/wiki/Create-a-dedicated-IAM-Policy-for-accessing-secrets)
+- Add the policy to you IAM User or IAM Role.
 - [Create a sample secret in AWS SSM Parameter Store](https://github.com/ridi/secret-keeper-python/wiki/Create-a-sample-secret-in-AWS-SSM-Parameter-Store)
 
 ## Usage
+### Prepare credentials
+If you are running as an IAM user with its security credentials, make sure that your credentials are properly set in either `~/.aws/credentials` file, or `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+See [`boto3`'s credentials scheme](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html#credentials) for details of setting credentials.
+
+#### Before 0.2.0
+If you are using `secret-keeper` of version `0.1.x`, you cannot use `boto3`'s
+credentials scheme. You should store credentials as special environment variables, namely `SECRETKEEPER_AWS_ACCESS_KEY`, `SECRETKEEPER_AWS_SECRET_KEY` and `SECRETKEEPER_AWS_REGION`.
+
+```bash
+$ export SECRETKEEPER_AWS_ACCESS_KEY="YOUR_ACCESS_KEY_ID"
+$ export SECRETKEEPER_AWS_SECRET_KEY="YOUR_SECRET_ACCESS_KEY"
+$ export SECRETKEEPER_AWS_REGION="us-east-1"
+```
+
+### Commandline Interface
+`secret-keeper` commandline interface is supported as of `0.3.0`.
+- Write to stdout.
+```
+$ secret-keeper sample.secret
+pa$$w@rd!
+```
+- Write to file.
+```
+$ secret-keeper sample.secret --o outfile && cat outfile
+pa$$w@rd!
+```
+- Print help.
+
+```
+$ secret-keeper -h
+usage: secret-keeper [-h] [-o OUTFILE] [-v] alias
+
+Retrieve and print secrets from `secret-keeper`. You need to configure AWS
+credentials by environment variables or files. See https://boto3.amazonaws.com
+/v1/documentation/api/latest/guide/configuration.html#credentials for more
+detail.
+
+positional arguments:
+ alias                 Alias of the secret
+
+optional arguments:
+ -h, --help            show this help message and exit
+ -o OUTFILE, --outfile OUTFILE
+                       Output file name. If not provided, secret is printed
+                       to stdout.
+ -v, --verbose         Gives detailed error message
+```
+
+### Sample application.
 - Write a sample application.
 ```Python
 # sample.py
@@ -38,19 +89,17 @@ if __name__ == "__main__":
     print("Secret: %s" % secret)
 ```
 
-- Run the sample application. You must either provide the dedicated user's access key, secret key and the region as environment variables, or pass them to `configure` function.
+- Run the sample application.
 
-### Provide as environment variables
-```bash
-$ export SECRETKEEPER_AWS_ACCESS_KEY="YOUR_ACCESS_KEY_ID"
-$ export SECRETKEEPER_AWS_SECRET_KEY="YOUR_SECRET_ACCESS_KEY"
-$ export SECRETKEEPER_AWS_REGION="us-east-1"
+```
 $ python sample.py
-Secret: pa$$w@rd!
+pa$$w@rd!
 ```
 
-### Pass to `configure` function
+- Rather than using `boto3`'s credentials scheme, you can pass your credentials and region to `configure` function. (as of `0.2.0`)
+
 ```python
+# sample2.py
 from ridi import secret_keeper
 
 secret_keeper.configure(
