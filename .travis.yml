@@ -7,7 +7,7 @@ python:
   - "3.6"
 install:
   - pip install -r requirements.txt
-  - pip install "pytest>=3.6" pytest-cov coveralls
+  - pip install -r requirements.test.txt
 script:
   - python -m pytest test --cov=ridi
 after_success:
