@@ -9,7 +9,7 @@
 Without secret-keeper, you would have:
 - hard-coded your secrets in your version-controlled source code (Worst!), or
 - created a not-version-controlled config file and manually provide it when you deploy your code, or
-- let your deployment system - Jenkins CI, etc - mananage your not-version-controlled config file, but you have as many of them as your projects.
+- let your deployment system - Jenkins CI, etc - manage your not-version-controlled config file, but you have as many of them as your projects.
 
 With secret-keeper, you can:
 - store your secrets in AWS and let your applications use it safely and conveniently.
