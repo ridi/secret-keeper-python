@@ -9,6 +9,7 @@ def _get_client():
         region_name=AWS_CONNECT_ARGS.aws_region,
         aws_access_key_id=AWS_CONNECT_ARGS.aws_access_key,
         aws_secret_access_key=AWS_CONNECT_ARGS.aws_secret_key,
+        aws_session_token=AWS_CONNECT_ARGS.aws_session_token,
     )
     return client
 
